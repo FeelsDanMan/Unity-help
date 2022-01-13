@@ -1,2 +1,36 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FameAnnimations : MonoBehaviour
+{
+
+    public int Lightmode;
+    public GameObject FlameLight;
+
+    void Update()
+    {
+        if (Lightmode == 0)
+        {
+            StartCoroutine(AnimateLight());
+        }
+    }
+
+    IEnumerator AnimateLight () {
+        Lightmode = Random.Range(1, 4);
+        if (Lightmode == 1)
+        {
+            FlameLight.GetComponent<Animation>().Play("Torch Anim 1");
+        }
+        if (Lightmode == 2)
+        {
+            FlameLight.GetComponent<Animation>().Play("Torch Anim 2");
+        }
+        if (Lightmode == 3)
+        {
+            FlameLight.GetComponent<Animation>().Play("Torch Anim 3");
+        }
+        yield return new WaitForSeconds(0.99f);
+        Lightmode = 0;
+    }
+}
